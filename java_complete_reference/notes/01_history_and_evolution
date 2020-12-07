@@ -1,0 +1,119 @@
+-----------------------------------------------------------------------
+|  CHAPTER 1 - THE HISTORY AND EVOLUTION OF JAVA                      |
+-----------------------------------------------------------------------
+
+- Java's Lineage
+
+    - C: The Birth of Modern Programming
+
+        - FORTRAN was efficient, but not good for system code.
+        - BASIC was easy to learn, but not powerful or good for large programs.
+        - Assembly language was efficient, but not easy to learn.
+        - Pascal was structured, but lacked features and couldn't be used for system programs.
+        - Spaghetti code and GOTO statments were common.
+
+        - By the early 1970s, a better programming language was desired.
+        - Computers were becoming much more common.
+        - C was first implemented by Dennis Ritchie on a PDP-11 running UNIX.
+        - BCPL (Martin Richards) -> B (Ken Thompson) -> C (Dennis Ritchie)
+        - Powerful, efficient, structured, easy to learn
+        - The birth of modern programming!
+        - K&R (1978)
+        - ANSI C (1989)
+
+
+    - C++: The Next Step
+
+        - Increasing complexity of programs led to ways of managing the complexity.
+        - OOP helps organize programs using inheritance, encapsulation, and polymorphism.
+        - Created by Bjarne Stroustrup in 1979.
+
+
+
+- The Creation of Java
+
+    - Creation
+
+        - Started as Oak in 1991, renamed Java in 1995
+        - Created by James Gosling and others.
+        - Desire for a platform-independent language that could be used in microwaves and remotes.
+        - Needed be able to run on a wide variety of CPUs without needing a compiler for each one.
+        - Then, the rise of the web, which also demanded portable programs.
+
+
+
+- How Java Impacted the Internet
+
+    - Java Applets
+
+        - An 'applet' is a Java program designed to be transmitted over the internet 
+            and automatically executed in a Java-compatible web browser.
+
+        - In essence, the applet allowed some functionality to be moved from the server
+            to the client.  This allowed much more dynamic applications to be built.
+
+
+    - Security
+
+        - Network programs can cause serious problems with security.  A program that
+            downloads and executes on a client computer must be prevented from doing
+            harm.
+
+        - Java achieved this protection by enabling you to confine an application to the
+            Java execution environment and prevent it from accessing other parts of the
+            computer.
+
+
+
+- Java's Magic - The ByteCode
+
+    - Bytecode is what allowed Java to solve both the security and portability problems.
+        Bytecode is a highly optimized set of instructions designed to be executed by the
+        JVM (Java Virtual Machine), which is part of the JRE (Java Runtime Environment).
+
+
+    - Essentially, the original JVM was designed as an interpreter for bytecode.  Instead
+        of translating (compiling) every program for a given system, only the JVM needs
+        to be implemented for that system.  Once a JRE exists for a given system, any Java
+        program can run on it.
+
+
+    - The JVM also helps to make programs secure.  Because the JVM is in control, it manages
+        execution.  It is possible for the JVM to create a restricted execution environment, 
+        a 'sandbox', preventing unrestricted access to the machine.
+
+
+    - Interpreted code is slower than compiled code.  However, the difference has gotten 
+        smaller over time.  A JIT Compiler compiles pieces of code in real time during
+        execution.
+
+
+    - Beginning with JDK 9, some Java environments will also support an ahead-of-time 
+        compiler.
+
+
+
+- Servlets - Java on the Server Side
+
+    - A 'servlet' is a small program that executes on the server.  They are used to
+        create dynamically generated content which is then served to the client.
+
+
+    - Since they are compiled into bytecode, they are portable and can be run in a
+        variety of different server environments.
+
+
+
+- Java Design Goals
+
+    - Simple
+    - Secure
+    - Portable
+    - Object-oriented
+    - Robust
+    - Multithreaded
+    - Architecture-neutral
+    - Interpreted
+    - High performance
+    - Distributed
+    - Dynamic
