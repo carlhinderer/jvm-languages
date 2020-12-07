@@ -2,4 +2,133 @@
 |  CHAPTER 2 - OVERVIEW                                               |
 -----------------------------------------------------------------------
 
-- 
+- OOP
+
+    - Procedural = oriented around code
+      OOP = oriented around data
+
+
+    - 3 Principles
+       
+        1. Encapsulation = keep data private and only expose public interface
+        2. Inheritance = objects acquire the properties of another object in hierarchy
+        3. Polymorphism = one interface used for a general class of actions
+
+
+
+- First Program
+
+    /* Example.java */
+
+    class Example {
+      public static void Main(String args[]) {
+        System.out.println("Hello World!");
+      }
+    }
+
+
+    - All Java code must reside in a class.
+    - By convention, the name of the class should match the name of the file.
+    - Names are case-sensitive.
+
+
+    - To compile the program:
+
+        $ javac Example.java
+
+      The compiler creates a file called 'Java.class' which contains the bytecode version
+        of the program.
+
+
+    - To run the program, we use the 'java' application launcher.
+
+        $ java Example
+
+      When you execute this command, the launcher will automatically search for a file named
+        'Example.class'.
+
+
+
+- Second Program
+
+    /* Example2.java */
+
+    class Example2 {
+      public static void main(String args[]) {
+        int num;
+        num = 100;
+        System.out.println("This is num: " + num);
+
+        num = num * 2;
+        System.out.print("This is num * 2: ");   // Doesn't add a newline
+        System.out.println(num);
+      }
+    }
+
+
+
+- Control Flow
+
+    - if Statements
+
+        // No block
+        if(num < 100) System.out.println("num is less than 100");
+
+        // With block
+        if (x < y) {
+          x = y;
+          y = 0;
+        }
+
+
+    - for Loops
+
+        for(x=0; x<10; x = x+1) {
+          System.out.println("This is x: " + x);
+        }
+
+
+
+- Lexical Issues
+
+    - Whitespace
+
+        - No special indentation rules
+        - Just need at least one whitespace token (space, tab, newline, form feed) between tokens.
+
+
+    - Identifiers
+
+        - Can include uppercase, lowercase, numbers, underscore, dollar signs (not for general use)
+        - Cannot begin with a number
+
+
+    - Literals
+
+        100
+        98.6
+        'X'
+        "This is a test"
+
+
+    - Comments
+
+        // Single-line comment
+
+        /* Multiline
+           Comment */
+
+
+    - Separators
+
+        ()     // Parameter lists, precedence in expressions
+        {}     // Blocks, automatically initialized array values
+        []     // Declare array types
+
+        ;      // Terminates statements
+        ,      // Separates consecutive identifiers
+        .      // Serarate package names, variables or methods in a reference
+
+        ::     // Create a method or constructor reference
+        ...    // Indicates a variable-length parameter
+        @      // Begins an annotation
