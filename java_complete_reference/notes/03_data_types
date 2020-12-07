@@ -1,0 +1,145 @@
+-----------------------------------------------------------------------
+|  CHAPTER 3 - DATA TYPES, VARIABLES, & ARRAYS                        |
+-----------------------------------------------------------------------
+
+- Java is Strongly Typed
+
+    - Every variable and expression has a type.
+    - All assignments are checked for type compatibility.
+    - There are no automatic type coercions.
+    - Types are checked at compilation time.
+
+
+
+- Primitive Types
+
+    - 8 Primitive Types
+
+        byte
+        short
+        int
+        long
+        char
+        float
+        double
+        boolean
+
+
+    - Integer Types
+
+        - In C and C++, the size of an integer varied based on the execution environment.  In
+            Java, an int is always 32-bit.
+
+        - byte      = 8 bits    (-128 to 127)
+          short     = 16 bits   (-32,768 to 32,767)
+          int       = 32 bits   (-2,147,483,648 to 2,147,483,647)
+          long      = 64 bits   (-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807)
+
+
+    - Floating Point Types
+
+        - float     = 32 bits   (1.4e-045 to 3.4e+038)
+          double    = 64 bits   (4.9e-324 to 1.8e+308)
+
+        - All transcendental math functions (sin(), cos(), tan(), etc.) return doubles.
+
+
+        class Area {
+          public static void main(String args[]) {
+            double pi, r, a;
+
+            r = 10.8;
+            pi = 3.1416;
+            a = pi * pi * r;
+
+            System.out.println("Area of the circle is " + a);
+          }
+        }
+
+
+    - Characters
+
+        - Java uses Unicode to represent characters.
+        - When Java was created, Unicode characters were 16 bits.  So, Java chars are 16 bits.
+
+
+        class CharDemo {
+          char c1, c2;
+
+          c1 = 88;   // ASCII code for 'X'
+          c2 = 'Y';
+
+          System.out.print("c1 and c2: ");
+          System.out.println(c1 + " " + c2);
+        }
+
+
+    - Booleans
+
+        - Can be used in tests.
+
+            b = true;
+            if (b) System.out.println("True");
+
+
+
+- Literals
+
+    - Integers
+
+        - Different Bases
+
+            // Octal
+            089
+    
+            // Hex
+            0xff OXFF
+    
+            // Binary
+            0b1010 0B1010
+
+
+        - To create a long literal, append with an 'L':
+
+            0x7ffffffffffffffL
+            23372036854775807L
+
+
+        - To make a number more readable, you can add underscores in it.
+
+            int x = 123_456_789;
+            int x = 123___456___789;
+            int x = 0b1101_0101_0001_1010;
+
+
+    - Floating-Point Literals
+
+        - Floating-point literals default to double precision.  To specify a float, you
+            append an 'F' or 'f' to the constant.
+
+
+        - Underscores can be added to floating point literals also.
+
+            double num = 9_423_497_862.0;
+            double num = 9_423_497.1_0_9;
+
+
+    - Character Literals
+
+        - Must be in single quotes.
+
+
+        - Common Escape Sequences
+
+            \ddd           // Octal character
+            \uxxxx         // Hex Unicode character
+
+            \'             // Single Quote
+            \"             // Double Quote
+            \\             // Backslash
+
+            \r             // Carriage Return
+            \n             // New line (Line Feed)
+            \f             // Form Feed
+            \t             // Tab
+            \b             // Backspace
