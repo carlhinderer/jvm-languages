@@ -1,0 +1,136 @@
+-----------------------------------------------------------------------
+|  CHAPTER 2 - SETTING UP MAVEN                                       |
+-----------------------------------------------------------------------
+
+- Download and Install Maven (Ubuntu 18.04 instructions)
+
+    - Download and extract the latest version.
+
+        $ wget https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz \
+            -P /tmp
+
+        $ sudo tar xf /tmp/apache-maven-*.tar.gz -C /opt
+
+        $ sudo ln -s /opt/apache-maven-3.6.3 /opt/maven
+
+
+    - Next, set up the environment variables for Maven.
+
+        $ sudo vim /etc/profile.d/maven.sh
+
+        # Add these lines
+        export JAVA_HOME=/usr/lib/jvm/default-java
+        export M2_HOME=/opt/maven
+        export MAVEN_HOME=/opt/maven
+        export PATH=${M2_HOME}/bin:${PATH}
+
+
+        # Make the script executable
+        $ sudo chmod +x /etc/profile.d/maven.sh
+
+        # Load the environment variables into your shell session
+        $ source /etc/profile.d/maven.sh
+
+
+    - Verify the installation.
+
+        # Get version
+        $ mvn -version
+
+        # Get help
+        $ mvn -h
+
+
+
+- The settings.xml
+
+    - User-specific configuration is stored in the 'settings.xml' file.
+
+
+    - Maven looks for this file in 2 places:
+
+        1. In the 'conf' folder of Maven's installation
+
+        2. In the '.m2' folder in the user's home directory
+
+      If both files exist, Maven will merge them, with the user settings taking
+        precedence.
+
+
+    - The '.m2' folder also contains plug-in JAR files and metadata that Maven requires.
+        It also contains the project-dependent JAR files that Maven downloaded from the
+        internet.  When you run a Maven command, this folder is created automatically.
+
+
+    - Here is a sample 'settings.xml':
+
+        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                                 http://maven.apache.org/xsd/settings--1.0.0.xsd">
+            <localRepository/>
+            <interactiveMode/>
+            <offline/>
+            <pluginGroups/>
+            <servers/>
+            <mirrors/>
+            <proxies/>
+            <profiles/>
+            <activeProfiles/>
+        </settings>
+
+
+    - Here is a brief description of these settings:
+
+        localRepository
+          Local folder for plug-ins and dependencies.
+
+        interactiveMode
+          If true, will ask user for input.  If false, will pick defaults.
+
+        offline
+          If true, will not connect to network.  If false, will download dependencies.
+
+        servers
+          Specify credentials for servers.
+
+        mirrors
+          Specify alternate locations for downloading dependencies.
+
+        proxies
+          Contain HTTP proxy information for connecting to internet.
+
+
+
+- Setting up a Proxy
+
+    <proxies>
+        <proxy>
+            <id>companyProxy</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>proxy.company.com</host>
+            <port>8080</port>
+            <username>proxyusername</username>
+            <password>proxypassword</password>
+            <nonProxyHosts />
+        </proxy>
+    </proxies>
+
+
+
+- Securing Passwords
+
+    - If we share our 'settings.xml', our password will be exposed.  To encrypt it:
+
+        $ mvn -emp mymasterpassword
+        {LCWw0+NAqw0HuYH9HNz+1D7aElXM242PtuyoDXDAuelxjwZC8MyXaACkHSy7 tZwU}
+
+
+    - Then, add it to the settings.xml:
+
+        <settingsSecurity>
+            <master>
+                {LCWw0+NAqw0HuYH9HNz+1D7aElXM242PtuyoDXDAuelxjwZC8MyXaA CkHSy7tZwU}
+            </master>
+        </settingsSecurity>
