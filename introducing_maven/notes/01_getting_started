@@ -1,0 +1,57 @@
+-----------------------------------------------------------------------
+|  CHAPTER 1 - GETTING STARTED WITH MAVEN                             |
+-----------------------------------------------------------------------
+
+- Features of Maven
+
+    - Standardized directory structure
+    - Declarative dependency management
+    - Plug-ins
+    - Uniform Build Abstraction
+    - Tools Support
+    - Archetypes (Project Templates)
+    - Open Source
+    - Used in 60% of Java projects
+
+
+
+- Maven Alternatives
+
+    - Ant
+
+        - Java-based tool for scripting builds
+        - Uses 'build.xml' for configuration
+        - Less 'convention over configuation' than Maven
+        - More flexible, but more complexity
+        - Uses Ivy for dependency management
+        - Used in 11% of Java projects
+
+
+    - Gradle
+
+        - Can be used for Java and non-Java projects
+        - Uses Groovy-based DSL for configuration, which has a steep learning curve
+        - Less mature than Ant and Maven
+        - Used in 19% of Java projects
+
+
+
+- Maven Components
+
+    - Maven SCM
+
+        Works with source control systems to perform actions like checking out code
+          or creating a branch or tag.
+
+
+    - Maven Wagon
+
+        Downloads project dependencies such as JAR files from different locations such
+          as FTPs, file systems, and web sites.
+
+
+    - Maven Doxia
+
+        Content generation framework that can be used to generate static and dynamic
+          content such as PDF files and web pages.  Generates project documentation
+          and reports.
