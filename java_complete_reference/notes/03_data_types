@@ -271,3 +271,53 @@
             // These are equivalent
             int[] nums1, nums2, nums3;
             int nums1[], nums2[], nums3[];
+
+
+
+- Type Inference with Local Variables
+
+    - Starting the JDK 10, it is possible to let the compiler infer the type of a
+        variable instead of declaring it explicitly.  This is especially useful when:
+
+        - the type can be inferred from it's initializer
+        - the type name is quite long
+        - the type is difficult to discern at compile time
+
+
+    - Here are some examples:
+
+        // These are equivalent
+        double avg = 3.0;
+        var avg = 3.0;
+
+
+    - You cannot use brackets on the left side of a var declaration.
+
+        var myArray = new int[10];         // Valid
+        var[] myArray = new int[10];       // Invalid
+
+
+    - With this change, 'var' became a restricted keyword, so it cannot be used in some
+        expressions.  For instance, 'var' cannot be used as the name of a class, interface,
+        enumeration, annotation, or generic type parameter.
+
+
+    - A 'var' cannot be created without being initialized.
+
+        var counter;    // Invalid, initializer required
+
+
+    - A 'var' cannot be created with an array initializer.
+
+        var myArray = new int[10];      // Valid
+        var myArray = {1, 2, 3};        // Invalid
+
+
+
+- The String Type
+
+    - The 'String' type is an object.  It is not a primitive type or a simple array of 
+        characters.
+
+        String str = "this is a test";
+        System.out.println(str);
