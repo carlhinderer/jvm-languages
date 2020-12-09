@@ -143,3 +143,131 @@
             \f             // Form Feed
             \t             // Tab
             \b             // Backspace
+
+
+
+- Variables
+
+    - Variable Basics
+
+        - Variables have block scope.
+
+
+        - There are 2 cases where automatic type conversion occurs:
+
+            1. The 2 data types are compatible
+            2. The destination type is larger than the source type.
+
+
+        - Otherwise, you need to perform an explicit type conversion.
+
+            int a;
+            byte b;
+            b = (byte) a;
+
+            int a;
+            long b;
+            a = (int) b;  // Truncation
+
+
+        - Automatic type promotion
+
+            byte a = 50;
+            byte b = 40;
+            int c = a + b;
+
+
+
+- Arrays
+
+    - 1D Arrays
+
+        - In Java, the 'new' operator is used to allocate memory.
+
+
+        - When the array is initialized, all of the elements are set to the default
+            (in this case 0):
+
+            // Declare new array
+            int month_days[];
+
+            // Allocate memory for array
+            month_days = new int[12];
+
+            // Declare and allocate together
+            int month_days = new int[12];
+
+
+            // Get item
+            month_days[0]
+            // 0
+
+            // Set item
+            month_days[0] = 31;
+            month_days[1] = 28;
+
+
+            // Array Initializer
+            int month_days[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+
+        - Java strictly checks to make sure you don't try to get/set outside of array bounds
+            at runtime.
+
+
+    - Multidimensional Arrays
+
+        - Arrays can have any number of dimensions.
+
+            // 2D Array
+            int twoD[][] = new int[4][5];
+
+
+        - You can allocate the first dimension, and allocate second dimension separately.
+
+            // Allocate 1st dimension
+            int twoD[][] = new int[4][];
+
+            // Allocate 2nd dimension
+            twoD[0] = new int[5];
+            twoD[1] = new int[5];
+            twoD[2] = new int[5];
+            twoD[3] = new int[5];
+
+
+        - Two-dimensional array initialization:
+
+            double m[][] = {
+              {0, 1, 2, 3},
+              {4, 5, 6, 7},
+              {8, 9, 10, 11},
+              {12, 13, 14, 15}
+            };
+
+
+        - 3D Matrix:
+
+            int threeD[][][] = new int[3][4][5];
+
+            for(int i=0; i<3; i++) {
+              for(int j=0; j<4; j++) {
+                for(int k=0; k<5; k++) {
+                  threeD[i][j][k] = i * j * k;
+                }
+              }
+            }
+
+
+        - Note that we put the square brackets before the variable name also.
+
+            // These are equivalent
+            int a1[] = new int[3];
+            int[] a1 = new int[3];
+
+            // These are equivalent
+            char twoD[][] = new char[3][4];
+            char[][] twoD = new char[3][4];
+
+            // These are equivalent
+            int[] nums1, nums2, nums3;
+            int nums1[], nums2[], nums3[];
