@@ -1,0 +1,83 @@
+-----------------------------------------------------------------------
+|  CHAPTER 4 - OPERATORS                                              |
+-----------------------------------------------------------------------
+
+- Arithmetic Operators
+
+    + - * / %
+    ++ --
+    += -= *= /= %=
+
+
+
+- Bitwise Operators
+
+    ~      NOT
+    &      AND
+    |      OR
+    ^      XOR
+
+    >>            Shift right
+    >>>           Shift right, zero fill
+    <<            Shift left
+
+    &= |= ^=  >>= >>>= <<=       Assignment
+
+
+    - Examples
+
+        ~0010
+        // 1101
+
+        1100 & 0101
+        // 0100
+
+        1100 | 0101
+        // 1101
+
+        1100 ^ 0101
+        // 1001
+
+
+        1010 << 2
+        // 1000
+
+        int a = 32;
+        a >> 2
+        // 8
+
+
+
+- Relational Operators
+
+    == !=
+    < > <= >=
+
+
+
+- Boolean Logical Operators
+
+    ! & | ^      Logical
+    && ||        Short-circuit Logical
+
+    == !=        Equality
+
+    &= |= ^=     Assignment
+
+    ?:           Ternary
+
+
+
+- Assignment Chaining
+
+    int x, y, z;
+
+    x = y = z = 100;
+
+
+
+- The Ternary Operator
+
+    expr1 ? expr2 : expr3
+
+    ratio = denominator == 0 ? 0 : numerator / denominator;
