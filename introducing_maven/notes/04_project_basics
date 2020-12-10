@@ -1,0 +1,89 @@
+-----------------------------------------------------------------------
+|  CHAPTER 4 - MAVEN PROJECT BASICS                                   |
+-----------------------------------------------------------------------
+
+- Standard Maven Project Structure
+
+    > gswm
+        > src
+            > main
+                > java
+            > test
+                > java
+        > target
+        - LICENSE.txt
+        - NOTICE.txt
+        - README.txt
+        - pom.xml
+
+
+    - The 'gswm' is the project root folder.  Typically, it matches the name of the 
+        generated artifact.
+
+
+    - The 'target' holds generated artifacts, such as the .class files.  This folder is
+        typically not stored in source control.
+
+
+
+- Other Files in /src
+
+    src/main/resources          
+
+      Holds resources such as templates that need to end up in the generated artifact.
+
+    src/main/config
+
+      Holds config files.  Will not end up in generated artifact.
+
+    src/main/scripts
+
+      Holds any scripts needed for the application.
+
+    src/test/resources
+
+      Holds config files needed for testing.
+
+    src/main/webapp
+
+      Holds web assets such as .jsp files, CSS, and images.
+
+    src/it
+
+      Holds integration tests.
+
+    src/main/db
+
+      Holds data files such as SQL scripts.
+
+    src/site
+
+      Holds files required during the generation of the project site.
+
+
+
+- Creating a New Project
+
+    - Create the project:
+
+        $ mkdir gswm
+
+        $ cd gswm
+        $ touch pom.xml
+        $ mkdir src
+        $ mkdir src/main
+        $ mkdir src/main/java
+
+
+    - Next, we add the 'pom.xml'.
+
+
+    - The convention for Maven versioning is:
+
+        <major-version>.<minor-version>.<incremental-version>-qualifier
+
+
+    - The options for qualifier include 'RC', 'alpha', 'beta', and 'SNAPSHOT'.
+    
+      The 'SNAPSHOT' qualifier indicates that the project is in development stage.  Every
+        time the project is built, Maven will fetch the latest version.
