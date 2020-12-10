@@ -87,3 +87,28 @@
     
       The 'SNAPSHOT' qualifier indicates that the project is in development stage.  Every
         time the project is built, Maven will fetch the latest version.
+
+
+
+- Building a Project
+
+    - To start, we'll add a class to the code.
+
+        # gswm/src/main/java/HelloWorld.java
+        ----------------------------------------------
+        public class HelloWorld {
+            public void sayHello() {
+                System.out.println("Hello World");
+            }
+        }
+
+
+    - Now, let's build the application.
+
+        $ cd gswm
+        $ mvn package
+
+
+    - We'll see that Maven compiled the code and packaged it into a JAR file.
+
+        gswm/target/gswm-1.0.0-SNAPSHOT.jar
