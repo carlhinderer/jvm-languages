@@ -112,3 +112,36 @@
     - We'll see that Maven compiled the code and packaged it into a JAR file.
 
         gswm/target/gswm-1.0.0-SNAPSHOT.jar
+
+
+
+- Testing the Project
+
+    - Now, let's add a test for our project.  First, we need to add Junit to our
+        dependencies.
+
+        # pom.xml
+        ----------------------------------------
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+
+
+    - Now, we can check to make sure our dependency is included:
+
+        $ mvn dependency:tree
+
+
+    - Next, we'll add a simple JUnit test.
+
+        # gswm/src/test/java/HelloWorldTest.java
+
+
+    - Now, we run the tests as part of the building process.
+
+        $ mvn package
