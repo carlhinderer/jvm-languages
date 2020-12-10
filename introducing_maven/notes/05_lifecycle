@@ -49,3 +49,137 @@
                 </plugins>
             </build>
         </project>
+
+
+
+- Lifecycle and Phases
+
+    - Maven goals typically perform one task.  Multiple goals need to be executed in an
+        orderly fashion, so they are organized into lifecycles.
+
+
+    - Every Maven project has the following 3 built-in lifecycles:
+
+        1. default = handles compiling, packaging, and deployment
+
+        2. clean = handles deletion of temporary files and artifacts in /target
+
+        3. site = handles the generation of documentation and site generation
+
+
+    - These are the phases of the 'default' lifecycle:
+
+        1. validate = checks that project is correct and dependencies are present
+
+        2. compile = compiles the source code
+
+        3. test = runs unit tests using frameworks
+
+        4. package = assembles compiled code into JAR
+
+        5. install = installs packaged archive into local repository
+
+        6. deploy = pushes the built archive into a remote repository
+
+
+    - Maven commands executes a phase.  They also execute any prerequisite phases.  So, when
+        you run 'mvn package', phases 1-4 are executed.
+
+
+    - If you need to skip the test phase for some reason, you can use:
+
+        $ mvn package -Dmaven.test.skip=true
+
+
+
+- Plug-in Development
+
+    - Developing your own plug-ins for Maven is straightforward.  In this example, we will
+        build a 'SystemInfoPlugin'.
+
+
+    - First, we create a new Maven project, 'gswm-maven-plugin'.  We'll add Maven as a
+        dependency in the 'pom.xml'.
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+
+
+    - We'll also specify the plugin in the 'pom.xml':
+
+        <!-- Use the latest version of Plugin  -->
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <version>3.6.0</version>
+                </plugin>
+            </plugins>
+        </build>
+
+
+    - Next, we'll create the plugin itself:
+
+        # gswm-maven-plugin/src/main/java/com/apress/plugins/SystemInfoMojo.java
+        ---------------------------------------------------------------------------
+        package com.apress.plugins;
+
+        import org.apache.commons.lang3.SystemUtils;
+        import org.apache.maven.plugin.AbstractMojo;
+        import org.apache.maven.plugin.MojoExecutionException;
+        import org.apache.maven.plugin.MojoFailureException;
+        import org.apache.maven.plugins.annotations.Mojo;
+
+        @Mojo( name = "systeminfo")
+        public class SystemInfoMojo extends AbstractMojo {
+
+            @Override
+            public void execute() throws MojoExecutionException, MojoFailureException {
+                getLog().info( "Java Home: " + SystemUtils.JAVA_HOME );
+                getLog().info( "Java Version: "+ SystemUtils.JAVA_VERSION);
+                getLog().info( "OS Name: " + SystemUtils.OS_NAME );
+                getLog().info( "OS Version: " + SystemUtils.OS_VERSION );
+                getLog().info( "User Name: " + SystemUtils.USER_NAME );
+            }
+        }
+
+
+    - Finally, we install the plug-in in the Maven repository.
+
+        $ cd gswm-maven-plugin
+        $ mvn install
+
+
+    - Now, we can use the plug-in:
+
+        # Execute the plug-in
+        $ mvn com.apress.plugins:gswm-maven-plugin:systeminfo
+
+
+    - Or we can add it to our 'pom.xml':
+
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>com.apress.plugins</groupId>
+                    <artifactId>gswm-maven-plugin </artifactId>
+                    <version>1.0.0</version>
+                    <executions>
+                        <execution>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>systeminfo</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+
+
+        # Compile your project
+        $ mvn compile
