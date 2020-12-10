@@ -145,3 +145,51 @@
     - Now, we run the tests as part of the building process.
 
         $ mvn package
+
+
+
+- Properties in pom.xml
+
+    - Implicit Properties
+
+        - Implicit properties are available by default to any Maven project.
+
+
+        - For instance, the 'project' property can be used to access the Maven Project
+            Object Model.
+
+            <build>
+                <finalName>${project.artifactId}</finalName>
+            </build>
+
+
+        - We can access properties from the 'settings.xml' using the 'settings' property.
+
+
+        - We can access environment variables using the 'env' property.
+
+            ${env.PATH}
+
+
+    - User-Defined Properties
+
+        - Maven also allows you to declare custom properties in the 'pom.xml'.
+
+
+        - Here, we define a custom property for the JUnit version number.
+
+            <properties>
+                <junit.version>4.12</junit.version>
+            </properties>
+
+
+        - And we can use the custom property:
+
+            <dependencies>
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <version>${junit.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
