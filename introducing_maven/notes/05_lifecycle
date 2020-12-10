@@ -1,0 +1,51 @@
+-----------------------------------------------------------------------
+|  CHAPTER 5 - MAVEN LIFECYCLE                                        |
+-----------------------------------------------------------------------
+
+- Goals and Plug-ins
+
+    - Build processes usually have several steps, like compiling source code, running 
+        unit tests, and packaging the artifact.  Maven uses the concept of 'goals' to
+        represent these granular tasks.
+
+
+    - For instance, we can run just the 'compile goal' of the build process.
+
+        $ cd gswm
+        $ mvn compiler:compile
+
+
+    - Goals are packaged in 'plug-ins', which are a collection of one or more goals.
+        In the previous example, the 'compiler' plug-in holds the 'compile' goal.
+
+
+    - The 'clean' goal clears out any temporary artiacts in the 'target' folder.
+
+        $ mvn clean:clean
+
+
+    - The out-of-the-box 'Help' plug-in can be used to list available goals in a given
+        plug-in.
+
+        $ mvn help:describe -Dplugin=compiler
+
+
+    - Plug-ins and their behavior can be configured using the plug-in section of the 
+        'pom.xml'.  Here, we specify the Java version to use to compile code.  By default,
+        it is 1.6, but we will change it to 1.8.
+
+        <project>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.8.1</version>
+                        <configuration>
+                            <source>1.8</source>
+                            <target>1.8</target>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </project>
