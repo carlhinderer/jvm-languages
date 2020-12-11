@@ -1,0 +1,223 @@
+-----------------------------------------------------------------------
+|  CHAPTER 6 - CLASSES                                                |
+-----------------------------------------------------------------------
+
+- Class Fundamentals
+
+    - Basic Structure
+
+        class className {
+            type instance-var1;
+            type instance-var2;
+    
+            type methodName1(paramList) {
+                // Method body
+            }
+    
+            type methodName2(paramList) {
+                // Method body
+            }
+        }
+
+
+    - A class with a 'main()' method is always the starting point for every Java 
+        application.
+
+
+
+- Simple Class Example
+
+    # BoxDemo.java
+    ------------------------------------------------------
+    class Box {
+        double width;
+        double height;
+        double depth;
+    }
+
+    class BoxDemo {
+        public static void main(String ags[]) {
+            Box myBox = new Box();
+
+            myBox.width = 10;
+            myBox.height = 15;
+            myBox.depth = 5;
+
+            double vol = myBox.width * myBox.height * myBox.depth;
+            System.out.println("Volume is: " + vol);
+        }
+    }
+
+
+
+- Declaring Objects
+
+    // Creates a reference to an object
+    Box myBox;
+
+    // Allocates a new Box object
+    myBox = new Box();
+
+
+    - If 'new' is called when there is not enough free memory to allocate the object, a
+        runtime error will occur.
+
+
+
+- Assigning Object Reference Variables
+
+    // b1 and b2 point to the same object instance
+    Box b1 = new Box();
+    Box b2 = b1;
+
+    // b1 points to null, but b2 still points to the original object
+    Box b1 = new Box();
+    Box b2 = b1;
+    b1 = null;
+
+
+
+- Methods
+
+    class Box {
+        double width;
+        double height;
+        double depth;
+
+        void volume() {
+            double vol = width * height * depth;
+            System.out.println("Volume is: " + vol);
+        }
+    }
+
+    class BoxDemo {
+        Box b1 = new Box();
+        b1.width = 10;
+        b1.height = 20;
+        b1.depth = 5;
+
+        b1.volume();
+    }
+
+
+
+- Methods that Return Values
+
+    class Box {
+        double width;
+        double height;
+        double depth;
+
+        double volume() {
+            return width * height * depth;
+        }
+    }
+
+    class BoxDemo {
+        Box b1 = new Box();
+        b1.width = 10;
+        b1.height = 20;
+        b1.depth = 5;
+
+        vol = b1.volume();
+        System.out.println("Volume is: " + vol);
+    }
+
+
+
+- Methods that Take Parameters
+
+    int square(int i) {
+        return i * i;
+    }
+
+
+    - The 'parameter' is a variable defined in a method.
+      The 'argument' is the actual value that is passed into the parameter.
+
+
+
+- Constructors
+
+    class Box {
+        double width;
+        double height;
+        double depth;
+
+        Box() {
+            System.out.println("Constructing Box");
+            width = 10;
+            height = 10;
+            depth = 10;
+        }
+
+        double volume() {
+            return width * height * depth;
+        }
+    }
+
+
+    - Any instance variables that are not set in the constructor will be given the
+        default value for their type.
+
+
+
+- Parameterized Constructors
+
+    class Box {
+        double width;
+        double height;
+        double depth;
+
+        Box(double w, double h, double d) {
+            width = w;
+            height = h;
+            depth = d;
+        }
+    }
+
+    b1 = new Box(10, 20, 15);
+
+
+
+- The 'this' Keyword
+
+    - The 'this' keyword can be used anywhere in a class to refer to the current object.
+        This is typically used when method parameters have the same name as instance
+        variables.
+
+        Box(double width, double height, double depth) {
+            this.width = width;
+            this.height = height;
+            this.depth = depth;
+        }
+
+
+
+- Example - Integer Stack Class
+
+    // Integer stack that can hold up to 10 values
+    class Stack {
+        int stck[] = new int[10];
+        int tos;
+
+        Stack() {
+            tos = -1;
+        }
+
+        void push(int item) {
+            if(tos == 9)
+                System.out.println("Stack is full.");
+            else
+                stck[++tos] = item;
+        }
+
+        int pop() {
+            if(tos < 0) {
+                System.out.println("Stack underflow.");
+                return 0;
+            }
+            else
+                return stck[tos--];
+        }
+    }
