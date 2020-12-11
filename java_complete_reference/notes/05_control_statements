@@ -1,0 +1,184 @@
+-----------------------------------------------------------------------
+|  CHAPTER 5 - CONTROL STATEMENTS                                     |
+-----------------------------------------------------------------------
+
+- if Statements
+
+    # Don't need block for single-line statements
+    if (condition)
+        statement1;
+    else if (condition)
+        statement2;
+    else
+        statement3;
+
+
+    # For multiple statements, need blocks
+    if (condition) {
+        statement1;
+        statement2;
+    } else if (condition) {
+        statement3;
+        statement4;
+    } else {
+        statement5;
+        statement6;
+    }
+
+
+
+- switch Statements
+
+    switch (expression) {
+        case value1:
+            // statement sequence
+            break;
+        case value2:
+            // statement sequence
+            break;
+        default:
+            // statement sequence
+    }
+
+
+    - For Java <= 1.6, 'expression' must resolve to byte, short, int, or char.
+      For Java >= 1.7, it can also be a String.
+
+
+    - Example:
+
+        switch(i) {
+            case 0:
+                System.out.println("Zero");
+                break;
+            case 1:
+                System.out.println("One");
+                break;
+            default:
+                System.out.println("Greater than one.")
+        }
+
+
+
+- while Loops
+
+    while (condition) {
+        // Loop body
+    }
+
+
+    - A do-while loop can be used if you want the body to execute once before the condition
+        is evaluated.
+
+        do {
+            // Loop body
+        } while (condition);
+
+
+
+- for Loops
+
+    for (initialization; condition; iteration) {
+        // body
+    }
+
+
+    - Example:
+
+        class FindPrime {
+            public static void main (String args[]) {
+                int num;
+                boolean isPrime;
+
+                num = 14;
+
+                if(num < 2) isPrime = false;
+                else isPrime = true;
+
+                for(int i=2; i <= num/i; i++) {
+                    isPrime = false;
+                    break;
+                }
+
+                if(isPrime) System.out.println("Prime");
+                else System.out.println("Not Prime");
+            }
+        }
+
+
+    - Note that you can put multiple statements in the for statement itself.
+
+        for(a=1, b=4; a<b; a++, b--) {
+            ...
+        }
+
+
+
+- for-each Loops
+
+    - As of Java 5, there is also a for-each loop also.
+
+        for (type itr-var : collection) statement-block
+
+
+    - Example:
+
+        class ForEach {
+            public static void main(String args[]) {
+                int nums[] = {1, 2, 3, 4, 5};
+
+                for(int x : nums) {
+                    System.out.println("Value is " + x);
+                }
+            }
+        }
+
+
+    - The for-each syntax can also be used to iterate over multidimensional arrays.
+
+        // 2D array
+        int nums[][] = new int[3][5];
+
+        // Populate arrays
+        for(int i=0; i<3; i++) {
+            for(intj=0; j<5; j++) {
+                nums[i][j] = i * j;
+            }
+        }
+
+        // Iterate over arrays
+        for(int x[] : nums) {
+            for(int y: z) {
+                System.out.println("Number is: " + z);
+            }
+        }
+
+
+
+- Jump Statements
+
+    - The 'break' statement is used to exit a loop.
+
+        for (int i=0; i<100; i++) {
+            if (i == 10) break;
+        }
+
+        while(true) {
+            if (exitCondition) break;
+        }
+
+
+    - The 'continue' statment causes execution to jump to the next loop iteration.
+
+        for (int i=0; i<100; i++) {
+            if (i%2 == 0) continue;
+            System.out.println(i);
+        }
+
+
+    - The 'return' statement is used to explicitly return from a label.
+
+        public static void main(String args[]) {
+            boolean t = true;
+            if(t) return;
+        }
