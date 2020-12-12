@@ -1,0 +1,146 @@
+-----------------------------------------------------------------------
+|  CHAPTER 7 - CLASSES & METHODS                                      |
+-----------------------------------------------------------------------
+
+- Overloading Methods
+
+    - Java support 'method overloading', which allows you to define 2 methods with the
+        same name, as long as they have different parameters.  This is one of the
+        ways Java supports polymorphism.
+
+        class OverloadDemo {
+            void test() { ... }
+
+            void test(int a) { ... }
+
+            void test(int a, int b) { ... }
+
+            void test(double a) { ... }
+        }
+
+
+    - Polymorphism example - Absolute values
+
+        // Java's standard library Math class
+        int abs(int n) { ... }
+        double abs(double d) { ... }
+        float abs(float f) { ... }
+
+
+
+- Overloading Constructors
+
+    class Box {
+        double width;
+        double height;
+        double depth;
+
+        // All dimensions specified
+        Box(double w, double h, double d) {
+            width = w;
+            height = h;
+            depth = d;
+        }
+
+        // No dimensions specified
+        Box() {
+            width = -1;
+            height = -1;
+            depth = -1;
+        }
+
+        // Used for cubes
+        Box(double side) {
+            width = side;
+            height = side;
+            depth = side;
+        }
+    }
+
+
+
+- Using Objects as Parameters
+
+    class Test {
+        int a, b;
+
+        Test(int i, int j) {
+            a = i;
+            b = j;
+        }
+
+        boolean equalTo(Test o) {
+            return o.a == a && o.b == b;
+        }
+    }
+
+    class TestEquality {
+        public static void main(string args[]) {
+            Test obj1 = new Test(100, 22);
+            Test obj2 = new Test(100, 22);
+
+            System.out.println("obj1 == obj2: " + obj1.equalTo(obj2));
+        }
+    }
+
+
+
+- Argument Passing
+
+    - Primitive types are passed by value.  What occurs inside the method body does not
+        change the value of the variable.
+
+    - Objects are passed by reference.  What occurs inside the method does change their
+        value.
+
+
+
+- Returning Objects
+
+    class Test {
+        int a;
+
+        Test(int i) {
+            a = i;
+        }
+
+        Test incrByTen() {
+            return new Test(a + 10);
+        }
+    }
+
+
+
+- Recursion
+
+    class Factorial {
+        int fact(int n) {
+            if(n == 1)
+                return n;
+            else
+                return fact(n-1) * n;
+        }
+    }
+
+
+
+- Access Control
+
+    - Members marked 'private' can only be used by other members of its class.
+
+        class Box {
+            private double width;
+            private double height;
+            private double depth;
+
+            Box(double w, double h, double d) {
+                width = w;
+                height = h;
+                depth = d;
+            }
+
+            // public is the default
+            int volume() {
+                return width * height * depth;
+            }
+        }
