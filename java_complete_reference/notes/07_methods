@@ -144,3 +144,145 @@
                 return width * height * depth;
             }
         }
+
+
+
+- Understanding 'static'
+
+    - The 'static' keyword creates a class member that will be used independently of
+        any object of that class.  Both variables and methods can be declared static.
+
+
+    - A static member can be used before any instances of the class are created.  For
+        instance, the 'main' method is always static, since it must be called before
+        any objects exist.
+
+
+    - Instance variables declared static are essentially global variables.
+
+
+    - Static methods have several restrictions:
+
+        1. They can only directly call other static methods of their class.
+        2. They can only directly access static variables of their class.
+        3. They cannot refer to 'this' or 'super' in any way.
+
+
+    - Here is an example:
+
+        class UseStatic {
+            static int a = 3;
+            static int b;
+
+            // This is run when the class is loaded
+            static {
+                b = a * 4;
+            }
+
+            static void meth(int c) {
+                System.out.println("a: " + a);
+                System.out.println("b: " + b);
+                System.out.println("c: " + c);
+            }
+        }
+
+        UseStatic.meth(42);
+
+
+
+- The 'final' Keyword
+
+    - A field can be declared a constant with the 'final' keyword.  Doing so prevents it
+        from being modified.  You must either give it a value when it is declared or in a
+        constructor.
+
+        final int FILE_NEW = 1;
+        final int FILE_OPEN = 2;
+        final int FILE_SAVE = 3;
+        final int FILE_SAVEAS = 4;
+        final int FILE_QUIT = 5
+
+
+
+- Arrays Revisited
+
+    - Arrays are implemented as objects.  They have a 'length' instance variable, which
+        is very useful.
+
+        class ArrayLength {
+            public static void main(String args[]) {
+                int a1[] = new int[10];
+
+                System.out.println("Length: " + a1.length);
+            }
+        }
+
+
+
+- Nested and Inner Classes
+
+    - A 'nested class' is a class defined inside another class.  The nested class
+        can access the members of the enclosing class, but the enclosing class cannot
+        access the members of the nested class.
+
+
+    - There are both static and non-static nested class.  A non-static nested class is
+        called an 'inner class'.
+
+
+    - Here is an example:
+
+        class Outer {
+            int outerX = 100;
+        
+            void test() {
+                Inner inner = new Inner();
+                inner.display();
+            }
+        
+            class Inner {
+                void display() {
+                    System.out.println("Here is outerX: " + outerX);
+                }
+            }
+        }
+
+        class InnerClassDemo {
+            public static void main(String args[]) {
+                Outer outer = new Outer();
+                outer.test();
+            }
+        }
+
+
+    - Actually, an inner class can be created in any block scope.
+
+        for(int i=0; i<5 i++) {
+            class Inner {
+                void display() {
+                    System.out.println("Inner class in a block.");
+                }
+            }
+
+            Inner inner = new Inner();
+            inner.display();
+        }
+
+
+
+- The 'String' Class
+
+
+- Using Command-Line Arguments
+
+
+- Variable-Length Arguments with Varargs
+
+
+- Overloading Vararg Methods
+
+
+- Varargs and Ambiguity
+
+
+- Local Variable Type Inference with Reference Types
