@@ -2,4 +2,37 @@
 |  CHAPTER 8 - INHERITANCE                                            |
 -----------------------------------------------------------------------
 
-- 
+- Inheritance Basics
+
+    - In Java, the class being inherited is the 'superclass'.  The class inheriting from
+        it is the 'subclass'.  
+
+
+    - A superclass is inherited by the subclass by using the 'extends' keyword.
+
+        class A {
+            int i, j;
+        
+            void showij() {
+                System.out.println("i and j: " + i + " " + j);
+            }
+        }
+        
+        class B extends A {
+            int k;
+        
+            void showk() {
+                System.out.println("k: " + k);
+            }
+        
+            void sum() {
+                System.out.println("i+j+k= " + (i+j+k));
+            }
+        }
+
+
+    - A subclass can access any public members of its superclass.  However, it cannot
+        access private members of its superclass.
+
+
+    - A more concrete example is included at 'code/ch08/BoxWeightDemo.java'.
