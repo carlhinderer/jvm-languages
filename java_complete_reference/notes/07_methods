@@ -272,17 +272,116 @@
 
 - The 'String' Class
 
+    - Objects of the 'String' type are immutable.  If you need a string that can be
+        modified in place, the 'StringBuffer' and 'StringBuilder' classes can be used.
+
+
+    - String objects have one operator, the concatenation operator.
+
+        String str = "I" + " like " + "Java";
+
+
+    - String objects have a bunch of useful functions:
+
+        String str1 = "First String";
+        String str2 = "Second String";
+
+        // Equality
+        str1.equals(str2)
+
+        // String length
+        str1.length()
+
+        // Character at position
+        str1.charAt(3)
+
+
+    - Array of Strings
+
+        String str[] = {"one", "two", "three"};
+
+
 
 - Using Command-Line Arguments
+
+    - We can pass command-line arguments into the 'main()' method when we run our program.
+
+        class CommandLine {
+            public static void main(String args[]) {
+                for (int i=0; i<args.length(); i++) {
+                    System.out.println(args[i]);
+                }
+            }
+        }
+
+
+        # Pass in arguments
+        $ java CommandLine this is a test 100 -1
+        this
+        is
+        a
+        test
+        100
+        -1
+
 
 
 - Variable-Length Arguments with Varargs
 
+    - Beginning with JDK 5, methods can accept a variable number of parameters.  These
+        methods are called 'vararg methods'.
+
+
+    - For instance, the 'printf()' method accepts any number of arguments, formats them,
+        and prints them.
+
+
+    - Here is an example:
+
+        class VarArgs {
+            static void vaTest (int ... v) {
+                System.out.println("Number of arguments: " + v.length);
+        
+                for(int x : v) {
+                    System.out.println(x);
+                }
+            }
+        
+            public static void main(String args[]) {
+                vaTest(10);
+                vaTest(1, 2, 3);
+                vaTest();
+            }
+        }
+
+
+    - If a method has both normal and variable-length parameters, the variable-length 
+        parameter must be last.
+
+        int doIt (int a, int b, double c, int ... vals) { ... }
+
+
 
 - Overloading Vararg Methods
+
+    - Vararg methods can be overloaded:
+
+        static void vaTest(int ... v) { ... }
+
+        static void vaTest(boolean ... v) { ... }
+
+        static void vaTest(String msg, int ... v) { ... }
+
 
 
 - Varargs and Ambiguity
 
+    - Note that overloading methods that take varargs can cause some unexpected errors.
+        This is because it is possible to create an ambiguous call.
 
-- Local Variable Type Inference with Reference Types
+        static void vaTest (int ... v) { ... }
+
+        static void vaTest (boolean ... v) { ... }
+
+        // Ambiguous call!
+        vaTest();
