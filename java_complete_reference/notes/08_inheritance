@@ -164,5 +164,93 @@
 
     - If 'super()' is called explicitly, it must be the first statment used in the
         subclass constructor.  So, whether 'super()' is explicitly called or not, the
-        order of constructors is the same.
-        
+        order of constructors is the same, in the order of derivation.
+
+
+
+- Method Overriding
+
+    - In a class hierarchy, when a method in a subclass has the same name and type
+        signature as a method in its superclass, the method in the subclass 'overrides'
+        the method in the superclass.
+
+        class A {
+            void show() {
+                System.out.println("show() in A");
+            }
+        }
+
+        class B extends A {
+            void show() {
+                super.show();    // This calls A's show()
+                System.out.println("show() in B");
+            }
+        }
+
+
+
+- Dynamic Method Dispatch
+
+    - The above example is of limited usefulness.  The reason method overriding is so
+        important in Java is that it enables 'dynamic method dispatch'.  
+
+      This is the mechanism that allows the call to an overridden method to be resolved
+        at run time.  This is how Java implements run-time polymorphism.
+
+
+    - Here is an example, where B and C both override A.
+
+        class A {
+            void callme() {
+                System.out.println("Here in A.");
+            }
+        }
+
+        class B extends A {
+            void callme() {
+                System.out.println("Here in B.");
+            }
+        }
+
+        class C extends A {
+            void callme() {
+                System.out.println("Here in C.");
+            }
+        }
+
+
+        class Dispatch {
+            public static void main(String args[]) {
+                A a = new A();
+                B b = new B();
+                C c = new C();
+
+                A r;
+                r = a;
+                r.callme();
+
+                r = b;
+                r.callme();
+
+                r = c;
+                c.callme();
+            }
+        }
+
+
+    - A more realistic example is included at 'code/ch08/FindAreas.java'.
+
+
+
+- Using Abstract Classes
+
+    - 
+
+
+- Using 'final' with Inheritance
+
+
+- Local Variable Type Inference and Inheritance
+
+
+- The Object Class
