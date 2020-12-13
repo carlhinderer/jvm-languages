@@ -36,3 +36,133 @@
 
 
     - A more concrete example is included at 'code/ch08/BoxWeightDemo.java'.
+
+
+
+- A Superclass Variable can Reference a Subclass Object
+
+    - A reference variable of a superclass can be assigned to any subclass derived from
+        that superclass.
+
+        Box plainBox = new Box();
+        BoxWeight weightBox = new BoxWeight(10, 12, 5, 25.0);
+
+        plainBox = weightBox;
+
+
+
+- Using 'super' to Call a Superclass Constructor
+
+    - Here, we reduce duplicated code by calling the superclass constructor:
+
+        class BoxWeight extends Box {
+            double weight;
+
+            BoxWeight(double w, double h, double d, double m) {
+                super(w, h, d);
+                weight = m;
+            }
+        }
+
+
+
+- Using 'super' when Superclass and Subclass Have the Same Members
+
+    - The second form of 'super' acts somewhat like 'this', but it always refers to 
+        the superclass of the subclass in which it is used.
+
+
+    - This form of 'super' is used in situations where the subclass hides members of the
+        same name in a superclass.
+
+        class A {
+            int i;
+        }
+
+        class B extends A {
+            int i;    // This hides the i in A
+
+            B(int a, int b) {
+                super.i = a;
+                i = b;
+            }
+
+            void show() {
+                System.out.println("i in superclass: " + super.i);
+                System.out.println("i in subclass: " + i);
+            }
+        }
+
+
+
+- Creating a Multilevel Hierarchy
+
+    - We can create hierarchies that have as many levels of inheritance as we like.
+
+        class Box {
+            private double width;
+            private double height;
+            private double depth;
+
+            Box (double w, double h, double d) {
+                width = w;
+                height = h;
+                depth = d;
+            }
+        }
+
+        class BoxWeight extends Box {
+            double weight;
+
+            BoxWeight (double w, double h, double d, double m) {
+                super(w, h, d);
+                weight = m;
+            }
+        }
+
+        class Shipment extends BoxWeight {
+            double cost;
+
+            Shipment (double w, double h, double d, double m, double c) {
+                super(w, h, d, m);
+                cost = c;
+            }
+        }
+
+
+
+- When Constructors are Executed
+
+    - This raises the question of in which order are the constructors executed?
+        In a class hierarchy, the constructors are called from superclass to subclass.
+
+        class A {
+            A() {
+                System.out.println("Inside A's Constructor");
+            }
+        }
+        
+        class B extends A {
+            B() {
+                System.out.println("Inside B's Constructor");
+            }
+        }
+        
+        class C extends B {
+            C() {
+                System.out.println("Inside C's Constructor");
+            }
+        }
+        
+        
+        class CallingConstructors {
+            public static void main(String args[]) {
+                C c = new C();
+            }
+        }
+
+
+    - If 'super()' is called explicitly, it must be the first statment used in the
+        subclass constructor.  So, whether 'super()' is explicitly called or not, the
+        order of constructors is the same.
+        

@@ -2,4 +2,52 @@
 |  CHAPTER 9 - PACKAGES & INTERACES                                   |
 -----------------------------------------------------------------------
 
-- 
+- Packages
+
+
+- Finding Packages and CLASSPATH
+
+
+- Packages and Member Access
+
+
+- Importing Packages
+
+
+- Interfaces
+
+
+- Implementing Interfaces
+
+
+- Accessing Implementations Through Interface References
+
+
+- Partial Imlementations
+
+
+- Nested Interfaces
+
+
+- Applying Interfaces
+
+
+- Variables in Interfaces
+
+
+- Interfaces Can Be Extended
+
+
+- Default Interface Methods
+
+
+- Default Method Fundamentals
+
+
+- Multiple Inheritance Issues
+
+
+- Using static Methods in an Interface
+
+
+- Private Interface Methods
