@@ -326,3 +326,49 @@
         class B extends A {
             ...
         }
+
+
+
+- The Object Class
+
+    - All classes are subclasses of the 'Object' class.  A reference variable of type
+        Object can refer to an object of any other class.
+
+
+    - The 'Object' class defines the following methods, which are available in every
+        object.
+
+        // Creates a new object that is the same as the object being cloned
+        Object clone()
+
+        // Determines whether one object is equal to another
+        boolean equals(Object object)
+
+        // Called before an unused object is recycled (deprecated in JDK 9)
+        void finalize()
+
+        // Obtains the class of an object at run time
+        Class<?> getClass()
+
+        // Returns the hash code associated with the invoking object
+        int hashCode()
+
+        // Resumes execution of a thread waiting on the invoking object
+        void notify()
+
+        // Resumes execution of all threads waiting on the invoking object
+        void notifyAll()
+
+        // Returns a string that describes the object
+        String toString()
+
+        // Waits on another thread of execution
+        void wait()
+        void wait(long milliseconds)
+        void wait(long milliseconds, int nanoseconds)
+
+
+    - The methods 'getClass()', 'notify()', 'notifyAll()', and 'wait()' are declared
+        'final'.  You may override the others.
+
+      The 'equals()' and 'toString()' methods are most frequently overridden.
