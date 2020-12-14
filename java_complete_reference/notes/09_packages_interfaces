@@ -172,3 +172,155 @@
 
 
     - All of the standard Java SE classes included with Java begin with the name 'java'.
+
+
+
+- Interfaces
+
+    - The keyword 'interface' fully abstracts a class's interface from its implementation.
+        Once the interface is defined, any number of classes can implement it.  Also, a
+        class can implement any number of interfaces.
+
+
+    - To implement an interface, a class must provide the complete set of methods required
+        by an interface.  Interfaces allow you to fully utilize the 'one interface, multiple
+        methods' aspect of polymorphism.
+
+    
+    - Interfaces are designed to support dynamic method resolution at run time.  Normally,
+        in order for one class method to be called from another class, both classes need
+        to be present at compile time.
+
+      Interfaces are designed to avoid this problem.
+
+
+
+- Defining an Interface
+
+    - Interfaces look similar to classes:
+
+        access interface name {
+            type final-varname = value;
+            ...
+            return-type method-name (paramlist);
+        }
+
+
+    - Here is an example:
+
+        interface Callback {
+            void callback(int param);
+        }
+
+
+    - Beginning with JDK 8, it is possible to add a default implementation to an 
+        interface method.
+
+
+    - JDK 8 also added static interface methods, and JDK 9 allows for private interface
+        methods.
+
+
+    - Variables included in interfaces are implicitly final and static, meaning they must
+        be initialized and cannot be changed by the implementing class.
+
+
+
+- Implementing Interfaces
+
+    - To implement an interface, the 'implements' clause is used in the class definition.
+        Methods implemented by a class must be declared 'public'.
+
+        class Client implements Callback {
+            public void callback(int n) {
+                System.out.println("callback called with " + p);
+            }
+        }
+
+
+
+- Accessing Implementations Through Interface References
+
+    - You can declare variables as object references that use an interface rather than
+        a class type.
+
+        Callback c = new Client();
+        c.callback(42);
+
+
+    - Note that the interface variable can only call members of the interface type.  It
+        cannot access non-interface members of the class.
+
+
+
+- Partial Imlementations
+
+    - If a class includes an interface but does not fully implement the methods required
+        by that interface, the class must be declared 'abstract'.
+
+        abstract class Incomplete implements Callback {
+            int a, b;
+
+            void show() {
+                System.out.println(a + " " + b);
+            }
+        }
+
+
+    - Any class that inherits 'Incomplete' must either implement the 'Callback' interface
+        or be declared abstract itself.
+
+
+
+- Nested Interfaces
+
+    - An interface can be declared a member of a class or another interface.  Such an 
+        interface is called a 'member interface' or 'nested interface'.
+
+        // This class contains a member interface
+        class A {
+            // This is a nested interface
+            public interface NestedInterface {
+                boolean isNotNegative(int x);
+            }
+        }
+        
+        // This class implements the nested interface
+        class B implements A.NestedInterface {
+            public boolean isNotNegative(int x) {
+                return x < 0 ? false : true;
+            }
+        }
+        
+        class NestedInterfaceDemo {
+            public static void main(String args[]) {
+                A.NestedInterface nif = new B();
+                if (nif.isNotNegative(10))
+                    System.out.println("Not negative.");
+            }
+        }
+
+
+
+- Applying Interfaces
+
+
+- Variables in Interfaces
+
+
+- Interfaces Can Be Extended
+
+
+- Default Interface Methods
+
+
+- Default Method Fundamentals
+
+
+- Multiple Inheritance Issues
+
+
+- Using static Methods in an Interface
+
+
+- Private Interface Methods
