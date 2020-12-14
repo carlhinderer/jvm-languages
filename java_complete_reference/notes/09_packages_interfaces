@@ -311,20 +311,130 @@
 
 - Variables in Interfaces
 
+    - You can use interfaces to import shared constants into multiple classes.
+
+        import java.util.Random;
+
+        interface SharedConstants {
+            int NO = 0;
+            int YES = 1;
+            int MAYBE = 2;
+            int LATER = 3;
+            int SOON = 4;
+            int NEVER = 5;
+        }
+
+        class Question implements SharedConstants {
+            Random rand = new Random();
+
+            int ask() {
+                int prob = (int) (100 * rand.nextDouble());
+                if(prob < 30)
+                    return NO;
+                else if (prob < 60)
+                    return YES;
+                else if (prob < 75)
+                    return LATER;
+                else if (prob < 98)
+                    return SOON;
+                else
+                    return NEVER;
+            }
+        }
+
+
 
 - Interfaces Can Be Extended
+
+    - One interface can inherit from another using the 'extends' keyword.
+
+        interface A {
+            void meth1();
+            void meth2();
+        }
+
+        interface B extends A {
+            void meth3();
+        }
+
+
+        // This class must implement all of A and B
+        class MyClass implements B {
+            public void meth1() {
+                System.out.println("Method 1.");
+            }
+
+            public void meth2() {
+                System.out.println("Method 2.");
+            }
+
+            public void meth3() {
+                System.out.println("Method 3.");
+            }
+        }
+
 
 
 - Default Interface Methods
 
+    - JDK 8 added the capability to add a default implementation for a method.
 
-- Default Method Fundamentals
+    
+    - Methods with default implementations must be marked with the 'default' keyword:
+
+        public interface MyInterface {
+            int getNumber();
+
+            default String getString() {
+                return "Default String";
+            }
+        }
+
 
 
 - Multiple Inheritance Issues
 
+    - Java does not support multiple inheritance.  A class can support multiple 
+        interfaces, but they cannot use this to save state.
+
+
 
 - Using static Methods in an Interface
 
+    - As of JDK 8, interfaces can now contain static methods.
+
+        public interface MyInterface {
+            int getNumber();
+
+            default String getString() {
+                return "Default String";
+            }
+
+            static int getDefaultNumber() {
+                return 0;
+            }
+        }
+
+
 
 - Private Interface Methods
+
+    - As of JDK 9, interfaces can include private methods.  A private interface method
+        can only be called by a default method or another private method in the same
+        interface.
+
+        interface IntStack {
+            void push(int item);
+            int pop();
+
+            default int[] popNElements(int n) {
+                return getElements(n);
+            }
+
+            private int[] getElements(int n) {
+                int[] elements = new int[n];
+
+                for(int i=0; i<n; i++) elements[i] = pop();
+                return elements;
+            }
+        }
