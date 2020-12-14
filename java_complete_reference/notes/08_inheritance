@@ -244,13 +244,85 @@
 
 - Using Abstract Classes
 
-    - 
+    - There are situations in which you want to define a superclass that declares the
+        structure of an abstraction without providing a complete implementation of
+        every method.
 
 
-- Using 'final' with Inheritance
+    - Often, there will be a case in which defining the method in the superclass makes
+        no sense (like with the Figure's 'area()' method).  You can handle this in 2 ways:
+
+        1. You can have it report a warning message (like above).
+
+        2. You can make it an abstract method, requiring subclasses to implement it.
 
 
-- Local Variable Type Inference and Inheritance
+        abstract class A {
+            abstract void callme();
+        }
 
 
-- The Object Class
+    - An abstract class cannot be directly instantiated.  Any subclass of an abstract class
+        must either implement all the abstract methods or be declared 'abstract' itself.
+
+
+    - An abstract class cannot have constructors or abstract methods.
+
+
+    - Abstract classes can implement concrete methods also.  They can include as much 
+        implementation as they see fit.
+
+        abstract class A {
+            abstract void callme();
+
+            void callMeToo() {
+                System.out.println("Concrete method.");
+            }
+        }
+
+
+
+- Using 'final' to Prevent Overriding
+
+    - There are 3 uses of the 'final' keyword in Java:
+
+        1. Creating a named constant.
+
+        2. Using it to prevent overriding.
+
+        3. Using it to prevent inheritance.
+
+
+    - Using 'final' to prevent overriding:
+
+        class A {
+            // This method cannot be overridden
+            final void meth() {
+                Sys
+            }
+        }
+
+
+    - Note that declaring methods 'final' can sometimes provide a performance enhancement.
+        The compiler is free to inline calls, because it knows they will not be overridden
+        by a subclass.  
+
+      Normally, Java resolves to method calls dynamically, using 'late binding'.  In this
+        case, they can be resolved at compile time, using 'early binding'.
+
+
+
+- Using 'final' to Prevent Inheritance
+
+    - Sometimes you may want to prevent a class from being subclassed.  To do this,
+        you can declare the class 'final'.  This also implicitly declares all of its
+        methods 'final' also.
+
+        final class A {
+            ...
+        }
+
+        // This will cause an error
+        class B extends A {
+            ...
+        }
