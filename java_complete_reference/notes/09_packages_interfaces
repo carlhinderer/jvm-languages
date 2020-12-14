@@ -4,50 +4,107 @@
 
 - Packages
 
+    - Packages are containers for classes.  They are used to keep the class name space 
+        compartmentalized.  
+
+      For instance, you can create a class named 'List' in your own package without 
+        worrying that it will collide with some other class named 'List' elsewhere.
+
+
+    - Packages are stored in a hierarchical manner and are explicitly imported into new
+        class definitions.  
+
+
+    - Packages are both a naming and visibility control mechanism.  You can define classes
+        inside a package that are not accessible outside of the package.
+
+
+
+- Defining a Package
+
+    - To create a package, you simply include a 'package' command as the first statement
+        in a Java source file.  The 'package' statement defines a namespace in which 
+        packages are stored.
+
+
+    - If you omit the 'package' statement, class names are put into the default package,
+        which has no name (this is what we have been doing so far).  This is fine for
+        small test applications, but most real applications will put classes into
+        packages.
+
+
+    - This is the general form of the package statement:
+
+        package mypackage;
+
+
+    - Typically, Java uses file system directories to store packages, and that is the 
+        approach assumed by the examples here.  The .class files that you create for
+        any classes in the 'mypackage' package must be stored in a directory called
+        'mypackage'.
+
+
+    - You can create a hierarchy of packages.  To do so, simply generate each package
+        name from the one above it using a period.
+
+      For instance, the package 'a.b.c' should be stored in the 'a/b/c' directory.
+
+
 
 - Finding Packages and CLASSPATH
 
+    - How does the Java run-time system know where to look for the packages you create?
+        For the examples in this chapter, the answer has 3 parts.
 
-- Packages and Member Access
+        1. By default, the Java run-time system uses the current working directory as 
+             a starting point.  If your package is a subdirectory of the current 
+             directory, it will be found.
 
+        2. You can specify a directory path or paths by setting the CLASSPATH environment
+             variable.
 
-- Importing Packages
+        3. You can use the -classpath option with java and javac to specify the path to
+             your classes.
 
-
-- Interfaces
-
-
-- Implementing Interfaces
-
-
-- Accessing Implementations Through Interface References
-
-
-- Partial Imlementations
+        (4.) Beginning with JDK 9 (this will be covered in Chapter 16), a package can be 
+               part of a module, and thus found on the module path.
 
 
-- Nested Interfaces
+    - For example, in order to find 'mypack', 
+
+        1. The program can be executed from a directory immediately above 'mypack'.
+
+        2. OR the CLASSPATH must be set to include 'mypack'
+
+        3. OR the -classpath option must specify the path to 'mypack' when the program
+             is run via java.
 
 
-- Applying Interfaces
+
+- Package Example
+
+    - First, create a new file 'AccountBalance.java' in a 'mypack' directory.
+
+        // mypack/AccountBalance.java
+        ---------------------------------------------
+        package mypack;
+
+        class Balance {
+            ...
+        }
+
+        class AccountBalance {
+            public static void main(String args[]) { ... }
+        }
 
 
-- Variables in Interfaces
+    - Now, compile it.  The resulting .class files should also be in the 'mypack' directory.
 
+        // Compile the classes
+        ch09 $ javac mypack/AccountBalance.java
 
-- Interfaces Can Be Extended
+        // Run the program
+        ch09 $ java mypack.AccountBalance
 
-
-- Default Interface Methods
-
-
-- Default Method Fundamentals
-
-
-- Multiple Inheritance Issues
-
-
-- Using static Methods in an Interface
-
-
-- Private Interface Methods
+        // This won't work, since it's not qualified with the package name
+        ch09 $ java AccountBalance
