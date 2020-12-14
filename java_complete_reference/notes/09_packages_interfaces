@@ -108,3 +108,67 @@
 
         // This won't work, since it's not qualified with the package name
         ch09 $ java AccountBalance
+
+
+
+- Packages and Member Access
+
+    - Packages add another dimension to access control.  As it relates to the interplay
+        between classes and packages, Java addresses 4 categories of visibility for class
+        members:
+
+        1. Subclasses in the same package
+
+        2. Non-subclasses in the same package
+
+        3. Subclasses in different packages
+
+        4. Classes that are neither in the same package nor subclasses
+
+
+    - Class Member Access
+
+                                          Private    No Modifier    Protected    Public
+        ------------------------------------------------------------------------------------
+        Same class                        Yes        Yes            Yes          Yes
+
+        Same package subclass             No         Yes            Yes          Yes
+
+        Same package non-subclass         No         Yes            Yes          Yes
+
+        Different package subclass        No         No             Yes          Yes
+
+        Different package non-subclass    No         No             No           Yes
+
+
+    - Anything declared 'public' can be accessed from different classes and different
+        packages.  Anything declared 'private' cannot be seen outside of its class.
+
+      When a member does not have an explicit access specification, it is visible to
+        subclasses, as well as other classes in the same package.  This is the default.
+
+      If you want to allow an element to be seen outside your current package, but only
+        classes that subclass your class directly, you use 'protected'.
+
+
+
+- Importing Packages
+
+    - Given that packages are a good way of compartmentalizing classes from each other, 
+        Java stores all of it's core classes in them.  There are no core classes in the
+        Java default package.
+
+
+    - Since typing out the entire package name can be tedious, Java provides the 'import'
+        statement to bring certain classes, or entire packages, into visibility.
+
+      Once imported, the class can be referred to directly, using only its name.  It is
+        a convenience, not technically necessary to write a complete Java program.
+
+        import pkg1 [.pkg2].(classname | *);
+
+        import java.util.Date;
+        import java.io.*;
+
+
+    - All of the standard Java SE classes included with Java begin with the name 'java'.
