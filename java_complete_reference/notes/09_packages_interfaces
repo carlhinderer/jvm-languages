@@ -304,6 +304,10 @@
 
 - Applying Interfaces
 
+    - We added an example of applying interfaces in 'code/ch09/interfaces'.  We have an
+        interface, 'IntStack', and 2 classes that implement it, 'FixedStack' and 'DynStack'.
+
+
 
 - Variables in Interfaces
 
