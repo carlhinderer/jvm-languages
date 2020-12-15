@@ -1,0 +1,94 @@
+-----------------------------------------------------------------------
+|  CHAPTER 1 - A SCALABLE LANGUAGE                                    |
+-----------------------------------------------------------------------
+
+- Scala
+
+    - A blend of OOP and functional programming concepts in a statically typed 
+        language.
+
+
+    - Simple Example - Associative Arrays
+
+        var capital = Map("US" -> "Washington", "France" -> "Paris")
+        capital += ("Japan" -> "Tokyo")
+        println(capital("France"))
+
+
+    - Simple Example - Arbitrarily Large Integer
+
+        def factorial(x: BigInt): BigInt =
+          if (x == 0) 1 else x * factorial(x-1)
+
+        factorial(30)
+
+
+    - Scala's approach is not to include everything you need in the standard library.  
+        Instead, it is extensible and users can grow the language by defining easy-to-use
+        libraries that feel like they are native.
+
+
+    - Scala combines object-oriented and functional programming.  It is purely
+        object-oriented in that every value is an object and every operation is a method
+        call.
+
+
+    - Scala is also a full-blown functional language.  Functions are first-class values,
+        and can be passed in as arguments, returned from methods, or assigned to variables.
+        Also, Scala defines many immutable types, preferring to map input values to output
+        values instead of changing data in place.
+
+
+
+- Why Scala?
+
+    - Scala runs on the JVM and is seamlessly interoperable with Java.  Scala code
+        can call Java methods, access Java fields, inherit from Java classes, and 
+        implement Java interfaces.  Scala code can also be invoked from Java code.
+
+
+    - Scala heavily reuses Java types, often adding desirable functionality to them.
+
+
+    - Scala programs tend to be short, often 1/10 to 1/2 the size of corresponding Java
+        programs.  For instance, semicolons are optional in Scala.
+
+
+    - For an example of Scala's concise syntax:
+
+        // Class with a constructor in Java
+        class MyClass {
+            private int index;
+            private String name;
+
+            public MyClass(int index, String name) {
+                this.index = index;
+                this.name = name;
+            }
+        }
+
+        // Same class in Scala
+        class MyClass(index: Int, name: String)
+
+
+    - Scala has many tools available in libraries that let you factor out common behavior.
+
+
+    - Java is high-level, a level of abstraction above Java.  For example:
+
+        // Java
+        boolean nameHasUpperCase = false;
+
+        for (int i=0; i<name.length(); ++i) {
+            if (Character.isUpperCase(name.charAt(i))) {
+                nameHasUpperCase = true;
+                break;
+            }
+        }
+
+        // Scala
+        val nameHasUpperCase = name.exists(_.isUpper)
+
+
+    - Scala is statically-typed, so you do get compile-time checking, while not being overly
+        verbose like many static languages.
