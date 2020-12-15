@@ -1,0 +1,177 @@
+-----------------------------------------------------------------------
+|  CHAPTER 2 - FIRST STEPS                                            |
+-----------------------------------------------------------------------
+
+- Using the Scala Interpreter
+
+    - To start the interpreter:
+
+        $ scala
+
+
+    - Basic statements
+
+        // Math expression
+        >> 1 + 2
+
+        // Print a statement
+        >> println("Hello, world!")
+
+
+    - To exit the interpreter:
+
+        > :quit
+
+
+
+- Declaring Variables
+
+    - Scala has 2 kinds of variables, vals and vars.  A 'val' is similar to a final
+        variable in Java.  A 'var' can be reassigned throughout its lifetime.
+
+        // Val definition
+        >> val msg = "Hello, world!"
+
+
+    - Usually, we let the Scala interpreter infer types, but we can also define them
+        explicitly.  Scala uses Java's String type.
+
+        // Define type explicitly
+        >> val msg2: java.lang.String = "Hello again, world!"
+
+        // Using the simple Java name works also
+        >> val msg3: String = "Hello yet again, world!"
+
+
+    - If we want to be able to reassign variables, we use 'var'.
+
+        // Assign and reassign
+        >>> var msg = "Hello, world!"
+        >>> msg = "Goodbye cruel world!"
+
+
+
+- Defining Functions
+
+    - Here is a Scala function:
+
+        > def max(x: Int, y: Int): Int = {
+              if(x > y) x
+              else y
+          }
+
+
+    - Alternatively, you can create the entire definition on one line:
+
+        > def max(x: Int, y: Int): Int = if (x > y) x else y
+
+
+    - To call the function:
+
+        > max(3, 5)
+
+
+    - Here is a function that takes no parameters and returns no interesting result:
+
+        > def greet() = println("Hello, world!")
+
+
+
+- Creating Scripts
+
+    - Create a file:
+
+        // hello.scala
+        -------------------
+        println("Hello, world, from a script!")
+
+
+    - And run it:
+
+        $ scala hello.scala
+
+
+    - Now create a script that accepts a command-line argument.
+
+        // helloargs.scala
+        -------------------
+        println("Hello, " + args(0) + "!")
+
+
+    - And run it with a command-line argument.
+
+        $ scala helloarg.scala planet
+
+
+
+- while and if
+
+    - Now, add this to the 'helloargs.scala' script.
+
+        var i = 0
+        while (i < args.length) {
+            println(args(i))
+            i += 1
+        }
+
+
+    - And run it:
+
+        $ scala helloarg.scala This is really fun
+
+
+    - Here, it also includes an 'if' statement:
+
+        var i = 0
+        while(i < args.length) {
+            if(i != 0)
+                print(" ")
+            print(args(i))
+            i+=1  
+        }
+
+
+    - Note that as in Java, the curly braces can be included or left out if the block
+        is only one statement.
+
+        while(i < args.length) {
+            if(i != 0) {
+                print(" ")
+            }
+            print(args(i))
+            i+=1  
+        }
+
+
+
+- foreach and for
+
+    - Note that instead of using while loops, most Scala programs favor a functional
+        approach.
+
+        >> args.foreach(arg => println(arg))
+
+
+    - You can specify the type of the argument if you want to:
+
+        >> args.foreach((arg: String) => println(arg))
+
+
+    - In Scala, if a function literal consists of one statement that takes a single
+        argument, you don't need to explicitly specify the argument:
+
+        // This works also
+        >> args.foreach(println)
+
+
+    - Finally, we'll see an example of the 'forexpression':
+
+        // forargs.scala
+        ---------------------------
+        for (arg <- args)
+            println(arg)
+
+
+    - And run it:
+
+        $ scala forargs.scala This is still fun
