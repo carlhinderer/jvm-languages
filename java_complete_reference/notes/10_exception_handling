@@ -132,3 +132,30 @@
         }
 
       Violating this rule will cause a compiler error.
+
+
+
+- Nested try Statements
+
+    - A try statement can be nested within the block of another try statement.  Every 
+        time a try statement is entered, the context of that exception is pushed onto
+        the stack.
+
+        try {
+            int a = args.length;
+            int b = 42 / a;
+
+            try {
+                int c[] = { 1 };
+                c[42] = 99;
+            }
+            catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Array index exception: " + e);
+            }
+        }
+        catch (ArithmeticException e) {
+            System.out.println("Divide by 0: " + e);
+        }
+
+      In this case, the first exception will be caught and execution will be halted.
+        The nested try is never executed.
