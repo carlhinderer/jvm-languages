@@ -305,3 +305,66 @@
         NoSuchFieldException               A requested field does not exist.
 
         NoSuchMethodException              A requested method does not exist.
+
+
+
+- Creating Your Own Exceptions
+
+    - Here are the methods that the Exception class inherits from Throwable:
+
+        Throwable fillInStackTrace()
+          // This method fills in the execution stack trace.
+
+        Throwable getCause()
+          // This method returns the cause of this throwable or null if the cause is nonexistent 
+          //   or unknown.
+
+        String getLocalizedMessage()
+          // This method creates a localized description of this throwable.
+
+        String getMessage()
+          // This method returns the detail message string of this throwable.
+
+        StackTraceElement[] getStackTrace()
+          // This method provides programmatic access to the stack trace information printed by 
+          //   printStackTrace().
+
+        Throwable initCause(Throwable cause)
+          // This method initializes the cause of this throwable to the specified value.
+
+        void printStackTrace()
+          // This method prints this throwable and its backtrace to the standard error stream.
+
+        void printStackTrace(PrintStream s)
+          // This method prints this throwable and its backtrace to the specified print stream.
+
+        void printStackTrace(PrintWriter s)
+          // This method prints this throwable and its backtrace to the specified print writer.
+
+        void setStackTrace(StackTraceElement[] stackTrace)
+          // This method sets the stack trace elements that will be returned by getStackTrace() 
+          //   and printed by printStackTrace() and related methods.
+
+        String toString()
+          // This method returns a short description of this throwable.
+
+
+    - There are 2 constructors for an exception:
+
+        Exception()
+        Exception(String msg)
+
+
+    - Here is an example of a custom exception:
+
+        class MyException extends Exception {
+            private int detail;
+        
+            MyException(int a) {
+                detail = a;
+            }
+        
+            public String toString() {
+                return "My Exception[" + detail + "]";
+            }
+        }
