@@ -417,3 +417,27 @@
                 }
             }
         }
+
+
+
+- Additional Exception Features
+
+    - Beginning with JDK 7, 3 interesting and useful features have been part of the
+        exception system:
+
+        1. The 'try-with-resources' statement (explained in Chapter 13)
+
+        2. The 'multi-catch'
+
+        3. The 'final rethrow'
+
+
+    - The multi-catch allows 2 or more exceptions to be caught by the same catch
+        clause.
+
+        catch (ArithmeticException | ArrayIndexOutOfBoundsException e)
+
+
+    - The 'final rethrow' or 'more precise rethrow' restricts the type of exceptions
+        that can be rethrown.  Only checked exceptions that the associated 'try' block
+        throws, which are not handled by a preceding 'catch' clause, can be thrown.
