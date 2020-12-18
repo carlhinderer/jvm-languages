@@ -75,7 +75,8 @@
                     d = 0;
                     a = 42 / d;
                     System.out.println("This will not be executed.");
-                } catch (ArithmeticException e) {
+                } 
+                catch (ArithmeticException e) {
                     System.out.println("Division by zero.");
                 }
     
@@ -114,9 +115,11 @@
                     int b = 42 / a;
                     int c[] = { 1 };
                     c[42] = 99;
-                } catch (ArithmeticException e) {
+                } 
+                catch (ArithmeticException e) {
                     System.out.println("Division By Zero: " + e);
-                } catch (ArrayIndexOutOfBoundsException e) {
+                } 
+                catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Array Index OOB: " + e);
                 } 
             }
@@ -127,7 +130,8 @@
 
         catch (ArithmeticException e) {
             System.out.println("Division by zero: " + e);
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             System.out.println("General exception: " + e);
         }
 
@@ -153,9 +157,63 @@
                 System.out.println("Array index exception: " + e);
             }
         }
+
         catch (ArithmeticException e) {
             System.out.println("Divide by 0: " + e);
         }
 
       In this case, the first exception will be caught and execution will be halted.
         The nested try is never executed.
+
+
+
+- The throw Statement
+
+    - You can throw exceptions explicitly:
+
+        throw ThrowableInstance;
+
+
+    - Here is an example:
+
+        static void demoproc() {
+            try {
+                throw new NullPointerException("demo");
+            } 
+            catch (NullPointerException e) {
+                System.out.println("Caught inside demoproc.");
+                throw e;
+            }
+        }
+
+
+
+- The throws Statement
+
+    - If a method is capable of causing an exception that it does not handle, it must
+        specify this behavior so that callers of the method can guard themselves against
+        that exception.
+
+     
+    - You do this by including a 'throws' clause in the method's declaration.  A 'throws'
+        clause lists the type of exceptions a method might throw.  This is necessary for
+        all exceptions except 'Error' and 'RuntimeException' descendants.
+
+
+    - You must declare the exceptions or a compile time error will result.  Also, you must 
+        handle it in the calling code or a compile time error will result.
+
+        class ThrowsDemo {
+            static void throwOne() throws IllegalAccessException {
+                System.out.println("Inside throwOne.");
+            }
+        
+            public static void main(String args[]) {
+                try {
+                    throwOne();
+                }
+                catch (IllegalAccessException e) {
+                    System.out.println("Caught: " + e);
+                }
+            }
+        }
