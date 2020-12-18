@@ -368,3 +368,52 @@
                 return "My Exception[" + detail + "]";
             }
         }
+
+
+
+- Chained Exceptions
+
+    - Chained exceptions allow you to associate another exception with an exception.
+
+      For example, an I/O error occurs, causing a divisor to not be set, which then
+        causes a DivideByZero error.  Chained exceptions can let the calling code
+        know that the I/O error was the actual source of the problem.
+
+
+    - To allow chained exceptions, 2 constructors and 2 methods were added to 'Throwable':
+
+        // Constructors
+        Throwable(Throwable causeExc)
+        Throwable(String msg, Throwable causeExc)
+        
+        // Methods
+        Throwable getCause()
+        Throwable initCause(Throwable causeExc)
+
+
+    - Here is an example:
+
+        class ChainExceptionDemo {
+            static void demoproc() {
+                // Create an exception
+                NullPointerException e = new NullPointerException("top layer");
+
+                // Add a cause
+                e.initCause(new ArithmeticException("cause"));
+
+                throw e;
+            }
+
+            public static void main(String args[]) {
+                try {
+                    demoproc();
+                }
+                catch (NullPointerException e) {
+                    // Display top level exception
+                    System.out.println("Caught: " + e);
+
+                    // Display cause exception
+                    System.out.println("Original cause: " + e.getCause());
+                }
+            }
+        }
