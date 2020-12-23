@@ -194,3 +194,20 @@
 
 
     - An example of this is located in '/code/ch11/NewThreadDemo.java'.
+
+
+
+- Extending Thread
+
+    - The second way to create a thread is to create a new class that extends Thread, and
+        then create an instance of that class.  The extending class must override the
+        'run()' method, which is the entry point for the new thread.  As before, 'start()'
+        begins execution of the new thread.
+
+
+    - An example of this is located in '/code/ch11/ExtendThreadDemo.java'.
+
+
+    - As a rule, if you need to override methods of 'Thread' besides 'run()', you should
+        override Thread.  If all you need to do is run the thread, just implement the
+        'Runnable' interface.
