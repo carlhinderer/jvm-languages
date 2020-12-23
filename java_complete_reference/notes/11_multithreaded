@@ -1,0 +1,103 @@
+-----------------------------------------------------------------------
+|  CHAPTER 11 - MULTITHREADED PROGRAMMING                             |
+-----------------------------------------------------------------------
+
+- Process-Based vs Thread-Based Multitasking
+
+    - Processes are heavyweight tasks that require their own separate address spaces.
+        IPC is expensive and limited.  Context switching between processes is also
+        costly.
+
+
+    - Threads are lightweight.  They share the same address space.  Interthread
+        communication is inexpensive, and context switching between threads is lower
+        in cost.
+
+
+    - Multithreading helps reduce the idle time spent waiting for I/O.
+
+
+
+- The Java Thread Model
+
+    - In a single-core system, concurrently executing threads share the CPU, but they are
+        not actually running at the same time.
+
+      In a multi-core system, it is possible for 2 or more threads to actually execute
+        simultaneously.
+
+
+    - In addition to the traditional multithreading capabilities described here, Java also
+        has the 'Fork/Join' framework which supports parallel programming.  Parallel
+        programming is a set of techniques that optimizes parallel execution in multicore
+        systems.
+
+
+    - Threads can be in the following states:
+
+        - Running
+        - Ready to Run (as soon as it gets CPU time)
+        - Suspended (activity is temporarily halted)
+        - Resumed (allows it to pick up where it left off)
+        - Blocked (waiting for some resource)
+        - Terminated (cannot be resumed)
+
+
+
+- Thread Priorities
+
+    - Java assigns an integer value for the priority of each thread.  A thread's priority
+        is used to decide when to context switch from one running thread to the next.
+
+
+    - The rules for deciding when to context switch are simple:
+
+        1. A thread can voluntarily relinquish control.  This occurs when explicitly yielding,
+             sleeping, or when blocked.  In this scenario, all other threads are examined,
+             and the highest-priority thread is given the CPU.
+
+        2. A thread can be pre-empted by a higher priority thread.  As soon as a higher-priority
+             thread wants to run, it does.  This is called 'preemptive multitasking'.
+
+
+
+- Synchronization
+
+    - If two threads want to communicate and share a data structure, you need some way to ensure
+        they don't conflict with each other.  For this purpose, Java uses an old model of IPC
+        called a 'monitor'.  
+
+
+    - A monitor is like a box that can only hold one thread.  Once a thread enters a monitor, all
+        threads must wait until that thread exits the monitor.
+
+
+    - In Java, there is no 'Monitor' class.  Instead, each object has its own implicit monitor
+        that is automatically entered when one of the object's synchronized methods is called.
+        Once a thread is inside that method, no other thread can call any other synchronized 
+        method on the same object.
+
+
+
+- The Thread Class and the Runnable Interface
+
+    - Java's multithreading system is built on the 'Thread' class, its methods, and its
+        companion interface, 'Runnable'.  To create a new thread, your program will either
+        extend 'Thread' or implement 'Runnable'.
+
+
+    - Here are some of the Thread class methods:
+
+        Method           Meaning
+        -----------------------------------------------
+        getName          Obtain a thread's name
+
+        getPriority      Obtain a thread's priority
+
+        isAlive          Determines whether thread is still running
+
+        join             Wait for a thread to terminate
+
+        run              Entry point for the thread
+
+        sleep            Suspend a thread for a period of time
