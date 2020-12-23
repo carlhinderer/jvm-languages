@@ -101,3 +101,69 @@
         run              Entry point for the thread
 
         sleep            Suspend a thread for a period of time
+
+
+
+- The Main Thread
+
+    - When a Java program starts up, one thread begins running immediately.  This is called
+        the 'main thread' of your program.  It is the main thread from which 'child' threads
+        will be spawned.  It is also usually the last thread to exit, since it performs
+        various shutdown activities.
+
+
+    - It is created automatically when your program is started, and it can be controlled 
+        through a 'Thread' object by called 'currentThread()', which is a public static
+        member of Thread.
+
+        static Thread currentThread()
+
+
+    - Here is an example:
+
+        class CurrentThreadDemo {
+            public static void main(String args[]) {
+                Thread t = Thread.currentThread();
+                System.out.println("Current thread: " + t);
+        
+                // Change the thread name
+                t.setName("My thread");
+                System.out.println("After name change: " + t);
+        
+                try {
+                    for (int n=5; n>0; n--) {
+                        System.out.println(n);
+                        Thread.sleep(1000);
+                    }
+                }
+                catch (InterruptedException e) {
+                    System.out.println("Main thread interrupted.");
+                }
+            }
+        }
+
+        // Output
+        Current thread: Thread[main,5,main]           // [Name, Priority, Group]
+        After name change: Thread[My Thread,5,main]
+        5
+        4
+        3
+        2
+        1
+
+
+    - The 'sleep()' method causes the thread from which it is called to suspend execution
+        for a specified number of milliseconds.
+
+        static void sleep(long milliseconds) throws InterruptedException
+
+      There is also another form that can be used if you want to specify the time in 
+        nanoseconds:
+
+        static void sleep(long milliseconds, int nanoseconds) throwsInterruptedException
+
+
+    - To get and set the thread name:
+
+        final void setName(String threadName)
+        final String getName()
