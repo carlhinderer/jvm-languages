@@ -211,3 +211,10 @@
     - As a rule, if you need to override methods of 'Thread' besides 'run()', you should
         override Thread.  If all you need to do is run the thread, just implement the
         'Runnable' interface.
+
+
+
+- Creating Multiple Threads
+
+    - An example of a program that creates 3 child threads is located in 
+        '/code/ch11/MultiThreadDemo.java'.
