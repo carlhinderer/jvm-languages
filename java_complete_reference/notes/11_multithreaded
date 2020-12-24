@@ -294,3 +294,27 @@
 
     - There are examples of this in 'code/ch11/NotSynchronized.java' (example of race conditions)
         and 'code/ch11/Synchronized.java' (example of using synchronized method).
+
+
+
+- The 'synchronized' Statement
+
+    - You may be interiting from a class that does not use synchronized methods, and you may
+        not have access to the source code.  So, you cannot declare the methods synchronized.
+        To get around this problem, you can put calls to methods inside a 'synchronized' block.
+
+        synchronized (objRef) {
+            // Statements to be synchronized
+        }
+
+
+    - Here is an example:
+
+        public void run() {
+            synchronized (target) {
+                target.call(msg);
+            }
+        }
+
+
+    - A full example is located in '/code/ch11/SynchBlock.java'.
