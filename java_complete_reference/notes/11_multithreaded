@@ -236,3 +236,61 @@
 
 
     - An example of using these methods is located in '/code/ch11/JoinDemo.java'.
+
+
+
+- Thread Priorities
+
+    - You can set the priority of a thread.  However, be aware that the scheduling 
+        implementation of the platform your program is running on will also have a large
+        effect on how threads are scheduled.  
+
+        final void setPriority (int level)
+        final int getPriority
+
+
+    - A higher-priority thread can preempt a lower-priority one.  For safety, a thread 
+        should occasionally yield to equal-priority threads, so it doesn't dominate the
+        CPU.
+
+
+    - When setting the priority, it must be a value between 'MIN_PRIORITY' and 'MAX_PRIORITY'
+        (usually 1-10).  To return a thread to the default, use 'NORM_PRIORITY'.  These 
+        constants are defined in 'Thread'.
+
+
+
+- Synchronization
+
+    - When 2 or more threads need access to a shared resource, the need some way to ensure
+        a resource will only be used by one thread at a time.  This process is called
+        'synchronization'.  Java provides language-level support for it.
+
+
+    - A 'monitor' is an object that is used as a mutually exclusive (mutex) lock.  Only one
+        thread can own a monitor at a given time.  
+
+      When a thread acquires a lock, it has 'entered' the monitor.  All other threads attempting 
+        to enter the locked monitor will be suspended until the first thread 'exits' the monitor.
+        All other threads are 'waiting' for the monitor during this time.
+
+
+
+- Using Synchronized Methods
+
+    - To enter an object's monitor, we just call a method that has been modified with the
+        'synchronized' keyword.
+
+        class CallMe {
+            synchronized void call (String msg) {
+                ...
+            }
+        }
+
+
+    - If we don't use the monitor, a race condition will occur, and the threads will interfere
+        with each others' calls to the method, and the output will be mixed up.
+
+
+    - There are examples of this in 'code/ch11/NotSynchronized.java' (example of race conditions)
+        and 'code/ch11/Synchronized.java' (example of using synchronized method).
