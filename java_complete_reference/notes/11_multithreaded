@@ -218,3 +218,21 @@
 
     - An example of a program that creates 3 child threads is located in 
         '/code/ch11/MultiThreadDemo.java'.
+
+
+
+- Using isAlive() and join()
+
+    - We will often want the main thread to finish last.  But how can one thread know that
+        another has ended?  There are 2 ways:
+
+        1. Call isAlive() on the thread, which will determine whether it is still running.
+
+            final boolean isAlive()
+
+        2. Wait for the thread to finish using join().
+
+            final void join() throws InterruptedException
+
+
+    - An example of using these methods is located in '/code/ch11/JoinDemo.java'.
