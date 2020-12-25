@@ -318,3 +318,53 @@
 
 
     - A full example is located in '/code/ch11/SynchBlock.java'.
+
+
+
+- Interthread Communication
+
+    - Let's say we have a classic queueing problem, where one thread is producing some
+        data and another is consuming it.  Suppose the producer has to wait until the 
+        consumer was finished consuming before adding more data.  
+
+      The consumer wastes CPU cycles polling for the producer to finish.  Once the
+        producer is finished, it starts wasting CPU cycles polling for the consumer to
+        finish.
+
+
+    - To avoid polling, Java has an elegant interprocess communication mechanism using the
+        'wait()', 'notify()', and 'notifyAll()' methods.  These methods are implemented
+        as final methods on the 'Object' class, so all classes have them.
+
+        final void wait() throws InterruptedException
+        final void notify()
+        final void notifyAll()
+
+
+    - Although wait() normally waits until notify() or notifyAll() is called, there is a 
+        possibility that in very rare cases the waiting thread could be awakened due to a 
+        spurious wakeup.  In this case, a waiting thread resumes without notify() or notifyAll()
+        having been called. (In essence, the thread resumes for no apparent reason.)
+
+      Because of this remote possibility, the Java API documentation recommends that calls to 
+        wait() should take place within a loop that checks the condition on which the thread is 
+        waiting.
+
+
+    - Without using these methods, as in '/code/ch11/WrongProducerConsumer.java', nothing stops
+        the producer from overrunning the consumer, and nothing stops the consumer from consuming 
+        the same value twice.  So, we get erroneous output.
+
+        Put: 1
+        Got: 1
+        Got: 1
+        Got: 1
+        Got: 1
+        Got: 1
+        Put: 2
+        Put: 3
+        Put: 4
+        Put: 5
+        Put: 6
+        Put: 7
+        Got: 7
