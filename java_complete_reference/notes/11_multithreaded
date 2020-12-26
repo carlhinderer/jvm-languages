@@ -383,3 +383,17 @@
         Got: 4
         Put: 5
         Got: 5
+
+
+
+- Deadlock
+
+    - Deadlock occurs when 2 threads have a circular dependency on a pair of synchronized
+        objects.  It is difficult to debug for 2 reasons:
+
+        1. It may occur only rarely, when 2 threads time slice in just the right way.
+
+        2. It may involve more than 2 threads and more than 2 synchronized objects.
+
+
+    - An example of creating a deadlock condition is located at '/code/ch11/Deadlock.java'.
