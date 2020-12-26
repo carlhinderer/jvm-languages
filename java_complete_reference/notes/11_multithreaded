@@ -414,3 +414,64 @@
 
     - Now, we do this by designing the 'run()' method to periodically determine whether a thread
         should be suspended.  An example of this is located at '/code/ch11/SuspendResume.java'.
+
+
+
+- Obtaining a Thread's State
+
+    - You can obtain the current state of a thread by calling the 'getState()' method 
+        defined by Thread.
+
+        Thread.State getState()
+
+
+    - Here are the values that can be returned by 'getState()':
+
+        Value             State
+        --------------------------------------------------------------------------------
+        BLOCKED           A thread that has suspended because it is waiting for a lock.
+
+        NEW               A thread that has not begun execution.
+
+        RUNNABLE          A thread that is executing or will after it gains access to the CPU.
+
+        TERMINATED        A thread that has completed execution.
+
+        TIMED_WAITING     A thread that has suspended execution for a specified period of time.
+                            For instance, this state is entered when a timed version of 'wait()'
+                            or 'join()' is called.
+
+        WAITING           A thread that has suspended because it is waiting for some action to occur.
+                            For instance, this state is entered when a non-timed version of 'wait()'
+                            or 'join()' is called.
+
+
+    - To use the states:
+
+        Thread.State ts = thrd.getState();
+
+        if (ts == Thread.State.RUNNABLE) {
+            ...
+        }
+
+
+    - This checking state is not really intended to provide a means of sychronizing threads.
+        It's primarily used for debugging or profiling.
+
+
+
+- Using a Factory Method to Create and Start a Thread
+
+    - Sometimes, it's convenient to just create and start a thread at the same time.  One way to
+        do this is to use a static factory method.
+
+      A 'factory method' returns an object.  Typically, they are static methods of a class.
+
+
+    - Here is a factory method that creates and starts a new thread:
+
+        public static NewThread createAndStart() {
+            NewThread nt = new NewThread();
+            nt.t.start();
+            return nt;
+        }
