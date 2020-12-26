@@ -397,3 +397,20 @@
 
 
     - An example of creating a deadlock condition is located at '/code/ch11/Deadlock.java'.
+
+
+
+- Suspending, Resuming, and Stopping Threads
+
+    - Sometimes, suspending execution of a thread is useful.  For example, a separate thread
+        can be used to display the time of day.  If the user doesn't want a clock, then its
+        thread can be suspended.
+
+
+    - In earlier days of Java, there were 'suspend()', 'resume()', and 'stop()' methods
+        directly available.  These methods caused dangerous failures since resources could end
+        up locked, so they were deprecated.
+
+
+    - Now, we do this by designing the 'run()' method to periodically determine whether a thread
+        should be suspended.  An example of this is located at '/code/ch11/SuspendResume.java'.
