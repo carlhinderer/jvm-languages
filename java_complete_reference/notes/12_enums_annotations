@@ -111,6 +111,12 @@
 
 - Another Enumeration Example
 
+    - For another enum example, we will replace our magic-8-ball application that we created
+        earlier using final variables with one that uses enums instead.
+
+      This example is located at '/code/ch12/enums/AskMe.java'.
+
+
 
 - Type Wrappers
 
