@@ -1,0 +1,113 @@
+-----------------------------------------------------------------------
+|  CHAPTER 12 - ENUMERATIONS, AUTOBOXING, & ANNOTATIONS               |
+-----------------------------------------------------------------------
+
+- Enumerations
+
+    - Enumerations, autoboxing, and annotations were all added by JDK 5 (2004).
+
+
+    - An 'enumeration' is a list of named constants that define a new data type and its 
+        legal values.  Before JDK 5, such values were defined using final variables.
+
+
+    - Enumerations are classes, so they can have constructors, methods, and instance variables.
+
+
+    - Here is how we use a simple enumeration:
+
+        // Define enum
+        enum Apple {
+            Jonathan, GoldenDel, RedDel, Winesap, Cortland
+        }
+
+        // Declare enum variable
+        Apple ap;
+        ap = Apple.RedDel;
+
+
+        // Use in control statement
+        if (ap == Apple.GoldenDel) { ... }
+
+        // Use in switch statement
+        switch(ap) {
+            case Jonathan:
+                ...
+            case Winesap:
+                ...
+        }
+
+
+        // Print enum value
+        System.out.println(Apple.Winesap)
+        // Winesap
+
+
+
+- The values() and valueOf() Methods
+
+
+- Java Enumerations are Class Types
+
+
+- Enumerations Inherit Enum
+
+
+- Another Enumeration Example
+
+
+- Type Wrappers
+
+
+- Autoboxing
+
+
+- Autoboxing and Methods
+
+
+- Autoboxing/Unboxing Occurs in Expressions
+
+
+- Autoboxing/Unboxing Boolean and Character Values
+
+
+- Autoboxing/Unboxing Helps Prevent Errors
+
+
+- Annotations
+
+
+- Specifying a Retention Policy
+
+
+- Obtaining Annotations at Runtime by Use of Reflection
+
+
+- Another Reflection Example
+
+
+- Obtaining All Annotations
+
+
+- The AnnotatedElement Interface
+
+
+- Using Default Values
+
+
+- Marker Annotations
+
+
+- Single-Member Annotations
+
+
+- The Built-in Annotations
+
+
+- Type Annotations
+
+
+- Repeating Annotations
+
+
+- Some Restrictions
