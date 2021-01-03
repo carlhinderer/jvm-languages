@@ -72,8 +72,41 @@
 
 - Java Enumerations are Class Types
 
+    - Here is an enum with a constructor, instance variable, and method:
+
+        enum Apple {
+            Jonathan(10), GoldenDel(9), RedDel(12), Winesap(15), Cortland(8);
+
+            private int price;
+
+            // Constructor
+            Apple(int p) { price = p; }
+
+            int getPrice() { return price; }
+        }
+
+
+    - An example of using this enum is located at '/code/ch12/enums/EnumDemo3.java'.
+
+
 
 - Enumerations Inherit Enum
+
+    - You cannot inherit a class with an enum, but all enums automatically inherit from the
+        'java.lang.Enum' class.  It has a few useful methods we can use:
+
+        // Obtain a value's position in the list of constants
+        final int ordinal()
+
+        // Compare the ordinal value of 2 constants in the same enum
+        final int compareTo(enum-type e)
+
+        // Compare 2 enum values, overrides the Object equals()
+        enum-value1 equals(enum-value2)
+
+
+    - An example of using these methods is located at '/code/ch12/enums/EnumDemo4.java'.
+
 
 
 - Another Enumeration Example
