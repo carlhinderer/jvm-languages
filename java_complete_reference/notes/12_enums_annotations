@@ -46,6 +46,29 @@
 
 - The values() and valueOf() Methods
 
+    - All enums automatically have 2 predefined methods:
+
+        public static enum-type[] values()
+        public static enum-type valueOf (String str )
+
+
+    - Here is how 'values()' is used:
+
+        // Print each of the enum values
+        Apple allApples[] = Apple.values();
+        for (Apple a : allApples) {
+            System.out.println(a);
+        }
+
+
+    - Here is how 'valueOf()' is used:
+
+        // Get enum value corresponding to name
+        ap = Apple.valueOf("Winesap");
+        System.out.println(ap);
+        // Winesap
+
+
 
 - Java Enumerations are Class Types
 
